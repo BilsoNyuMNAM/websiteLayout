@@ -1,0 +1,137 @@
+.dom-tree {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.dom-tree-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1.5px solid var(--border-color);
+    flex-shrink: 0;
+}
+
+.dom-tree-icon {
+    font-size: 11px;
+    color: var(--accent-orange);
+    font-weight: 700;
+}
+
+.dom-tree-title {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent-orange);
+}
+
+.dom-tree-count {
+    margin-left: auto;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+}
+
+.dom-tree-content {
+    padding: 12px 8px;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.dom-tree-empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: var(--text-muted);
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+.tree-node {
+    font-size: 11px;
+}
+
+.text-node {
+    color: var(--text-muted);
+    font-style: italic;
+    padding: 2px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.node-line {
+    display: flex;
+    align-items: center;
+    padding: 2px 6px;
+    cursor: pointer;
+    border-radius: var(--radius-sm);
+    transition: background 0.1s ease;
+    white-space: nowrap;
+}
+
+.node-line:hover,
+.node-hovered {
+    background: rgba(0, 255, 65, 0.1);
+    /* Outline on hover */
+}
+
+.node-selected {
+    background: rgba(255, 107, 0, 0.15);
+    /* Orange on select */
+    border-left: 2px solid var(--accent-orange);
+    margin-left: -2px;
+    /* Compensate for border */
+}
+
+.node-selected .node-tag {
+    color: var(--accent-orange);
+}
+
+.node-arrow {
+    font-size: 8px;
+    color: var(--text-muted);
+    margin-right: 4px;
+    display: inline-block;
+    transition: transform 0.15s ease;
+    width: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.node-arrow.expanded {
+    transform: rotate(90deg);
+}
+
+.node-spacer {
+    width: 14px;
+    display: inline-block;
+}
+
+.node-tag {
+    color: var(--text-secondary);
+    /* Default tag color */
+}
+
+.attr-key {
+    color: var(--accent-green-dim);
+}
+
+.attr-value {
+    color: var(--accent-green);
+}
+
+.node-text {
+    color: var(--text-muted);
+    font-style: italic;
+    margin-left: 4px;
+    opacity: 0.7;
+}
+
+.node-children {
+    border-left: 1px solid rgba(255, 255, 255, 0.04);
+    margin-left: 12px;
+}
