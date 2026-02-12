@@ -1,9 +1,16 @@
 export const domToJson = (node) => {
     if (!node) return null;
 
-    // Generate a unique ID if not present
-    const id = node.id || `n-${Math.random().toString(36).substr(2, 9)}`;
-    node.dataset.inspectorId = id; // Add to DOM for reverse lookup
+    // Generate a unique ID if not present or use existing
+    // We check dataset or attribute to persist IDs
+    let id = node.dataset?.inspectorId || node.getAttribute('data-inspector-id');
+    if (!id) {
+        id = node.id || `n-${Math.random().toString(36).substr(2, 9)}`;
+    }
+
+    // Explicitly set the attribute so it appears in outerHTML
+    node.setAttribute('data-inspector-id', id);
+    node.dataset.inspectorId = id;
 
     const jsonNode = {
         id,
@@ -53,10 +60,20 @@ export const domToJson = (node) => {
     return jsonNode;
 };
 
+export const injectIdsIntoHtml = (htmlString) => {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(htmlString, 'text/html');
+    // Walking the tree with domToJson will automatically inject IDs
+    // because we added setAttribute there.
+    domToJson(doc.documentElement);
+    return doc.documentElement.outerHTML;
+};
+
 export const parseHtml = (htmlString) => {
     const parser = new DOMParser();
     const doc = parser.parseFromString(htmlString, 'text/html');
-    // Process the tree to inject IDs and custom scripts if needed
+
+    // Process the tree to inject IDs and generate JSON
     const json = domToJson(doc.documentElement);
 
     return {

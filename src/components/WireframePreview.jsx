@@ -48,7 +48,7 @@ const WireframePreview = () => {
             css += `
         * {
           background: transparent !important;
-          color: #000 !important;
+          color: #fff !important;
           border: 1px solid #ccc !important;
           font-family: monospace !important;
           box-shadow: none !important;

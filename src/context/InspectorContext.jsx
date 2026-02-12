@@ -57,4 +57,10 @@ export const InspectorProvider = ({ children }) => {
     );
 };
 
-export const useInspector = () => useContext(InspectorContext);
+export const useInspector = () => {
+    const context = useContext(InspectorContext);
+    if (!context) {
+        throw new Error('useInspector must be used within an InspectorProvider');
+    }
+    return context;
+};
